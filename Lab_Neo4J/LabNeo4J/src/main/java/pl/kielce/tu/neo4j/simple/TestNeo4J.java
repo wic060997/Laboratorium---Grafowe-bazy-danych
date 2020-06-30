@@ -132,6 +132,7 @@ public class TestNeo4J {
 		System.out.println("startNodeId = " + relationship.startNodeId());
 		System.out.println("endNodeId = " + relationship.endNodeId());
 		System.out.println("asMap = " + relationship.asMap());
+
 	}
 
 	public static Result deleteEverything(Transaction transaction) {
@@ -145,17 +146,29 @@ public class TestNeo4J {
 		try (Driver driver = GraphDatabase.driver("bolt://localhost:7687", AuthTokens.basic("neo4j", "neo4jpassword"));
 				Session session = driver.session()) {
 			session.writeTransaction(tx -> deleteEverything(tx));
+			System.out.println("*******************************");
 			session.writeTransaction(tx -> createStudent(tx, "Nowak"));
+			System.out.println("*******************************");
 			session.writeTransaction(tx -> createStudent(tx, "Polak"));
+			System.out.println("*******************************");
 			session.writeTransaction(tx -> createStudent(tx, "Kowalski"));
+			System.out.println("*******************************");
 			session.writeTransaction(tx -> createGroup(tx, "101"));
+			System.out.println("*******************************");
 			session.writeTransaction(tx -> createGroup(tx, "102"));
+			System.out.println("*******************************");
 			session.writeTransaction(tx -> createGroup(tx, "103"));
+			System.out.println("*******************************");
 			session.writeTransaction(tx -> createRelationship(tx, "Kowalski", "101"));
+			System.out.println("*******************************");
 			session.writeTransaction(tx -> readAllNodes(tx));
+			System.out.println("*******************************");
 			session.writeTransaction(tx -> readAllRealtionships(tx));
+			System.out.println("*******************************");
 			session.writeTransaction(tx -> readAllNodesWithRealationships(tx));
+			System.out.println("*******************************");
 			session.writeTransaction(tx -> readAllNodesWithLabel(tx));
+			System.out.println("*******************************");
 		}
 	}
 }

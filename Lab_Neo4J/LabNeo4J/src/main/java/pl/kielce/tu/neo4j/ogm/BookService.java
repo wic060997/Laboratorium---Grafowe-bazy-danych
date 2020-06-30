@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.neo4j.ogm.session.Session;
 
-class BookService extends GenericService<Book> {
+class  BookService extends GenericService<Book> {
 
     public BookService(Session session) {
 		super(session);
